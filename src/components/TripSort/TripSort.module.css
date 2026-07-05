@@ -1,0 +1,90 @@
+.trip-sort {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.trip-sort__item {
+  margin-right: 15px;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #b4b4b4;
+  cursor: default;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+
+.trip-sort__item:last-child {
+  margin-right: 0;
+}
+
+.trip-sort__item--day {
+  width: 55px;
+  text-align: center;
+  margin-right: 83px;
+}
+
+.trip-sort__item--event {
+  width: 300px;
+}
+
+.trip-sort__item--time {
+  width: 225px;
+}
+
+.trip-sort__item--price {
+  width: 90px;
+}
+
+.trip-sort__btn {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 7px 15px 6px 22px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.trip-sort__btn:hover {
+  color: #000000;
+}
+
+.trip-sort__input:checked + .trip-sort__btn {
+  position: relative;
+  color: #000000;
+  border-color: #000000;
+}
+
+.trip-sort__input:checked + .trip-sort__btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  background-color: #ffd054;
+  border-radius: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.trip-sort__input:disabled + .trip-sort__btn {
+  opacity: 0.6;
+}
+
+.trip-sort__input:disabled + .trip-sort__btn:hover {
+  color: #b4b4b4;
+  cursor: default;
+}
+
+.trip-events__trip-sort {
+  margin-bottom: 8px;
+}

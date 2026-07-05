@@ -1,0 +1,57 @@
+.event__section-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #ffd054;
+}
+.event__section-title--offers {
+  margin-bottom: 15px;
+}
+
+.event__section--offers {
+  padding: 0 20px;
+}
+
+.event__available-offers {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: -6px;
+}
+
+.event__offer-selector {
+  margin-bottom: 6px;
+}
+.event__offer-selector:not(:last-of-type) {
+  margin-right: 6px;
+}
+
+.event__offer-label {
+  display: block;
+  padding: 22px 30px 21px;
+  font-size: 17px;
+  line-height: 21px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #f2f2f2;
+  border-radius: 32px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.event__offer-label:hover {
+  background-color: rgba(13, 138, 228, 0.6);
+}
+.event__offer-label::first-letter {
+  text-transform: capitalize;
+}
+
+.event__offer-checkbox:checked + .event__offer-label {
+  background-color: #0d8ae4;
+}

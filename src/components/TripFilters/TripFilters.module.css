@@ -1,0 +1,45 @@
+.trip-filters {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: start;
+      align-items: flex-start;
+}
+.trip-filters--hidden {
+  display: none;
+}
+
+.trip-filters__filter:not(:last-of-type) {
+  margin-right: 19px;
+}
+
+.trip-filters__filter-label {
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  opacity: 0.6;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+.trip-filters__filter-label:hover {
+  opacity: 1;
+}
+.trip-filters__filter-label:active {
+  opacity: 0.6;
+}
+.trip-filters__filter-input:checked + .trip-filters__filter-label {
+  opacity: 1;
+  cursor: default;
+}
+.trip-filters__filter-input:disabled + .trip-filters__filter-label {
+  opacity: 0.4;
+  cursor: default;
+}
