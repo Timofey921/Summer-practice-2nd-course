@@ -1,0 +1,50 @@
+.page-header {
+  padding-top: 23px;
+  color: #ffffff;
+  background-color: #078ff0;
+  background-image: url("/img/header-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .page-header {
+    background-image: url("/img/header-bg@2x.png");
+  }
+}
+
+.page-header__container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  padding-left: 110px;
+}
+
+.page-header__logo {
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin-right: 18px;
+}
+
+.trip-main {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  padding-bottom: 10px;
+}
+.trip-main--hidden {
+  display: none;
+}
+
+.trip-main__trip-controls {
+  margin-top: 36px;
+  width: 600px;
+}

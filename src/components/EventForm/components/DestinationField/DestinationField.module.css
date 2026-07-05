@@ -1,0 +1,39 @@
+.event__field-group {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 5px 2px;
+  margin-right: 18px;
+  border-bottom: 1px solid #0d8ae4;
+}
+.event__field-group--destination {
+  width: 290px;
+}
+
+.event__label {
+  margin-right: 5px;
+  cursor: pointer;
+}
+.event__label::first-letter {
+  text-transform: capitalize;
+}
+
+.event__input {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+}
+.event__input--destination {
+  width: 150px;
+}
+.event__input--destination::-webkit-calendar-picker-indicator {
+  display: none;
+}
