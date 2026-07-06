@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import type { FilterType, SortType, TripEvent } from '../types/event.ts';
-import { INITIAL_EVENT } from '../mock/data.ts';
-import Header from '../UI/Header/Header.tsx';
-import TripSort from '../UI/TripSort/TripSort.tsx';
-import EventForm from '../UI/EventForm/EventForm.tsx';
-import EventCard from '../UI/EventCard/EventCard.tsx';
-import styles from './App.module.css';
+import type { FilterType, SortType, TripEvent } from '../../types/event';
+import { INITIAL_EVENT } from '../../mock/data';
+import Header from '../../UI/Header/Header';
+import TripSort from '../../UI/TripSort/TripSort';
+import EventForm from '../../UI/EventForm/EventForm';
+import EventCard from '../../UI/EventCard/EventCard';
+import styles from './HomePage.module.css';
 
-const App = () => {
+const HomePage = () => {
   const [filter, setFilter] = useState<FilterType>('everything');
   const [sort, setSort] = useState<SortType>('day');
   const [events, setEvents] = useState<TripEvent[]>([INITIAL_EVENT]);
@@ -94,4 +94,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default HomePage;
