@@ -1,7 +1,7 @@
 import type { FilterType } from '../../../types/event.ts';
-import TripInfo from '../TripInfo/TripInfo.tsx';
-import TripFilters from '../TripFilters/TripFilters.tsx';
-import EventAddButton from '../../pages/EventAddButton/EventAddButton.tsx';
+import TripInfo from '../../UI/TripInfo/TripInfo.tsx';
+import TripFilters from '../../UI/TripFilters/TripFilters.tsx';
+import EventAddButton from '../../UI/EventAddButton/EventAddButton.tsx';
 import styles from './Header.module.css';
 
 interface HeaderProps {

@@ -2,12 +2,12 @@ import { useState, type SubmitEventHandler } from 'react';
 import type { EventType, TripEvent } from '../../../types/event.ts';
 import { AVAILABLE_OFFERS, EVENT_TYPE_LABELS } from '../../../mock/data.ts';
 import { findDestinationByName } from '../../../utils/destinations.ts';
-import EventTypeSelector from './components/EventTypeSelector/EventTypeSelector.tsx';
-import OffersSection from './components/OffersSection/OffersSection.tsx';
-import DestinationSection from './components/DestinationDescription/DestinationDescription.tsx';
-import DestinationField from './components/DestinationField/DestinationField.tsx';
-import TimeField from './components/TimeField/TimeField.tsx';
-import PriceField from './components/PriceField/PriceField.tsx';
+import EventTypeSelector from '../../UI/EventTypeSelector/EventTypeSelector.tsx';
+import OffersSection from '../../UI/OffersSection/OffersSection.tsx';
+import DestinationSection from '../../UI/DestinationDescription/DestinationDescription.tsx';
+import DestinationField from '../../UI/DestinationField/DestinationField.tsx';
+import TimeField from '../../UI/TimeField/TimeField.tsx';
+import PriceField from '../../UI/PriceField/PriceField.tsx';
 import styles from './EventForm.module.css';
 
 interface EventFormProps {

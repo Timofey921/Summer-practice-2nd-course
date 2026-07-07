@@ -1,5 +1,5 @@
 import styles from './OffersSection.module.css';
-import type { Offer } from '../../../../../types/event.ts';
+import type { Offer } from '../../../types/event.ts';
 
 interface OffersSectionProps {
   offers: Offer[];

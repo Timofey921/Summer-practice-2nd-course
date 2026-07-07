@@ -1,8 +1,8 @@
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
-import HomePage from './UI/pages/HomePage/HomePage.tsx';
-import LogInPage from './UI/pages/LogInPage/LogInPage.tsx';
-import SignInPage from './UI/pages/SignInPage/SignInPage.tsx';
-import AuthorizedUserRoute from './routes/AuthorizedUserRoute';
+import HomePage from './components/widgets/HomePage/HomePage.tsx';
+import LogInPage from './components/pages/LogInPage/LogInPage.tsx';
+import SignInPage from './components/pages/SignInPage/SignInPage.tsx';
+import AuthorizedUserRoute from './routes/AuthorizedUserRoute.tsx';
 
 const App = () => (
   <BrowserRouter>
