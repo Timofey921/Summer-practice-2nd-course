@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './EventTypeSelector.module.css';
-import type { EventType } from '../../../../types/event';
-import { EVENT_TYPES, EVENT_TYPE_LABELS } from '../../../../mock/data';
+import type { EventType } from '../../../../../types/event';
+import { EVENT_TYPES, EVENT_TYPE_LABELS } from '../../../../../mock/data';
 
 interface EventTypeSelectorProps {
   selectedType: EventType;

@@ -1,6 +1,6 @@
-import type { TripEvent } from '../../types/event.ts';
-import { EVENT_TYPE_LABELS } from '../../mock/data.ts';
-import { formatEventDate, formatEventDuration, formatEventTime } from '../../utils/date.ts';
+import type { TripEvent } from '../../../types/event.ts';
+import { EVENT_TYPE_LABELS } from '../../../mock/data.ts';
+import { formatEventDate, formatEventDuration, formatEventTime } from '../../../utils/date.ts';
 import styles from './EventCard.module.css';
 
 interface EventCardProps {
