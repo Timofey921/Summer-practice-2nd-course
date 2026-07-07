@@ -1,5 +1,5 @@
 import styles from './DestinationField.module.css';
-import { DESTINATIONS } from '../../../../../mock/data';
+import { DESTINATIONS } from '../../../mock/data';
 
 interface DestinationFieldProps {
   id: string;

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import type { FilterType, SortType, TripEvent } from '../../../types/event';
 import { INITIAL_EVENT } from '../../../mock/data';
 import Header from '../../pages/Header/Header';
-import TripSort from '../TripSort/TripSort';
-import EventForm from '../EventForm/EventForm';
-import EventCard from '../EventCard/EventCard';
+import TripSort from '../../UI/TripSort/TripSort';
+import EventForm from '../../widgets/EventForm/EventForm';
+import EventCard from '../../pages/EventCard/EventCard';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {

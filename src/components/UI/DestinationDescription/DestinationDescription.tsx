@@ -1,5 +1,5 @@
 import styles from './DestinationDescription.module.css';
-import type { Destination } from '../../../../../types/event';
+import type { Destination } from '../../../types/event';
 
 interface DestinationSectionProps {
   destination: Destination | null;
