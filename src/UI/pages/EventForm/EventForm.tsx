@@ -1,7 +1,7 @@
 import { useState, type SubmitEventHandler } from 'react';
-import type { EventType, TripEvent } from '../../types/event.ts';
-import { AVAILABLE_OFFERS, EVENT_TYPE_LABELS } from '../../mock/data.ts';
-import { findDestinationByName } from '../../utils/destinations.ts';
+import type { EventType, TripEvent } from '../../../types/event.ts';
+import { AVAILABLE_OFFERS, EVENT_TYPE_LABELS } from '../../../mock/data.ts';
+import { findDestinationByName } from '../../../utils/destinations.ts';
 import EventTypeSelector from './components/EventTypeSelector/EventTypeSelector.tsx';
 import OffersSection from './components/OffersSection/OffersSection.tsx';
 import DestinationSection from './components/DestinationDescription/DestinationDescription.tsx';

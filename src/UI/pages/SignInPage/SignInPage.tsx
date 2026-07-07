@@ -1,7 +1,7 @@
 import { useState, useRef, type SubmitEventHandler } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import authService from '../../services/authService';
-import { MIN_LOGIN_LENGTH, MIN_PASSWORD_LENGTH } from '../../utils/validation';
+import authService from '../../../services/authService';
+import { MIN_LOGIN_LENGTH, MIN_PASSWORD_LENGTH } from '../../../utils/validation';
 import styles from './SignInPage.module.css';
 
 const SignInPage = () => {

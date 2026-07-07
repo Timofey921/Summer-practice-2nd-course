@@ -1,4 +1,4 @@
-import type { SortType } from '../../types/event.ts';
+import type { SortType } from '../../../types/event.ts';
 import styles from './TripSort.module.css';
 
 interface TripSortProps {

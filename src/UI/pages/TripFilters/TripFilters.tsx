@@ -1,4 +1,4 @@
-import type { FilterType } from '../../types/event.ts';
+import type { FilterType } from '../../../types/event.ts';
 import styles from './TripFilters.module.css';
 
 interface TripFiltersProps {
