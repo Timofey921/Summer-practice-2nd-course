@@ -1,65 +1,87 @@
-import { useState, type SubmitEventHandler } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import type { InferType } from 'yup';
+import { loginSchema } from '../../../utils/loginValidation';
 import authService from '../../../services/authService';
 import styles from './LoginPage.module.css';
 
-const LogInPage = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
+type LoginFormData = InferType<typeof loginSchema>;
 
-  const handleSubmit: SubmitEventHandler<HTMLFormElement> = async (formEvent) => {
-    formEvent.preventDefault();
-    setLoading(true);
-    setErrorMessage('');
+const LogInPage = () => {
+  const navigate = useNavigate();
+  const [serverError, setServerError] = useState('');
+  const {register, handleSubmit, formState: { errors, isSubmitting },} = useForm<LoginFormData>({
+    resolver: yupResolver(loginSchema),
+    defaultValues: {
+      login: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = async (data: LoginFormData) => {
+    setServerError('');
 
     try {
-      await authService.login(login, password);
+      await authService.login(data.login, data.password);
       navigate('/workspace');
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : 'Login error');
-    } finally {
-      setLoading(false);
+      setServerError(
+        error instanceof Error ? error.message : 'Login error'
+      );
     }
   };
 
   return (
     <div className={styles.page}>
       <h1>Login</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label htmlFor="login-username">Email</label>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="login-email">Email</label>
         <input
-          id="login-username"
-          type="text"
+          id="login-email"
+          type="email"
           placeholder="Enter your email"
-          value={login}
-          onChange={(e) => setLogin(e.target.value)}
-          required
+          {...register('login')}
         />
+
+        {errors.login && (
+          <span className={styles.error}>
+            {errors.login.message}
+          </span>
+        )}
+
         <label htmlFor="login-password">Password</label>
         <input
           id="login-password"
           type="password"
           placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
+          {...register('password')}
         />
+
+        {errors.password && (
+          <span className={styles.error}>
+            {errors.password.message}
+          </span>
+        )}
+
         <p className={styles.prompt}>
           Not Signed In?{' '}
-          <Link to="/register" className={styles.link}>
+          <Link to="/signin" className={styles.link}>
             Sign In
           </Link>
         </p>
-        <button type="submit" className={styles.btn} disabled={loading}>
-          {loading ? 'Loading...' : 'Login'}
+
+        <button type="submit" className={styles.btn} disabled={isSubmitting}>
+          {isSubmitting ? 'Loading...' : 'Login'}
         </button>
       </form>
-      <div className={errorMessage ? styles.error : styles.errorPlaceholder} aria-live="polite" role="alert">
-        {errorMessage || '\u00A0'}
-      </div>
+
+      {serverError && (
+        <div className={styles.error} role="alert">
+          {serverError}
+        </div>
+      )}
     </div>
   );
 };
