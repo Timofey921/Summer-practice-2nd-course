@@ -1,14 +1,15 @@
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './components/widgets/HomePage/HomePage.tsx';
 import LogInPage from './components/pages/LogInPage/LogInPage.tsx';
 import SignInPage from './components/pages/SignInPage/SignInPage.tsx';
 import AuthorizedUserRoute from './routes/AuthorizedUserRoute.tsx';
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage.tsx';
+import Welcome from './components/widgets/Welcome/Welcome.tsx';
 
 const App = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Navigate to="/signin" replace />} />
+      <Route path="/" element={<Welcome />} />
       <Route path="/login" element={<LogInPage />} />
       <Route path="/signin" element={<SignInPage />} />
 
