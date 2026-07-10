@@ -5,6 +5,7 @@ import SignInPage from './components/pages/SignInPage/SignInPage.tsx';
 import AuthorizedUserRoute from './routes/AuthorizedUserRoute.tsx';
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage.tsx';
 import Welcome from './components/widgets/Welcome/Welcome.tsx';
+import Profile from './components/pages/Profile/Profile.tsx';
 
 const App = () => (
   <BrowserRouter>
@@ -15,6 +16,7 @@ const App = () => (
 
       <Route element={<AuthorizedUserRoute />}>
         <Route path="/workspace" element={<HomePage />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />
