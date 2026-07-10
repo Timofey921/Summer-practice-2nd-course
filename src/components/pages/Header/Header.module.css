@@ -48,3 +48,37 @@
   margin-top: 36px;
   width: 600px;
 }
+
+.page-header__account {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-left: 24px;
+}
+
+.page-header__profile-link {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.page-header__profile-link:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.page-header__profile-icon {
+  width: 18px;
+  height: 18px;
+}

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { FilterType } from '../../../types/event.ts';
 import TripInfo from '../../UI/TripInfo/TripInfo.tsx';
 import TripFilters from '../../UI/TripFilters/TripFilters.tsx';
@@ -44,6 +45,12 @@ const Header = (props: HeaderProps) => {
           </div>
 
           <EventAddButton onClick={onAddEventClick} disabled={isAddButtonDisabled} />
+        </div>
+
+        <div className={styles['page-header__account']}>
+          <Link to="/profile" className={styles['page-header__profile-link']} aria-label="Personal account">
+            <img src="/img/user.svg" alt="" className={styles.avatarIcon} />
+          </Link>
         </div>
       </div>
     </header>

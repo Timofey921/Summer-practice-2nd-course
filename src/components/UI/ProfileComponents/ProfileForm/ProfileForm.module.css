@@ -1,0 +1,164 @@
+.container {
+  width: 640px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0 0 32px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.loadingText {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.avatarSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px dashed var(--muted);
+  background: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.avatarButton:hover {
+  border-color: #0d8ae4;
+}
+
+.avatarButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.avatarIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.formGroup {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.input,
+.textarea {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background-color: #f2f2f2;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #0d8ae4;
+}
+
+.input:disabled,
+.textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cancelButton {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.cancelButton:hover {
+  border-color: var(--navy);
+}
+
+.submitButton {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #0d8ae4;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #0b5082;
+}
+
+.cancelButton:disabled,
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #0d8ae4;
+  text-align: center;
+}
+
+.errorPlaceholder {
+  margin-top: 16px;
+  font-size: 14px;
+  visibility: hidden;
+}

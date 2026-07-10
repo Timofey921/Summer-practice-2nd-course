@@ -51,9 +51,14 @@ const WelcomeHeader = () => {
 
         <div className={styles.authButtons}>
           {isAuthenticated ? (
-            <Link to="/workspace" className={styles.primaryBtn}>
-              To planning
-            </Link>
+            <>
+              <Link to="/profile" className={styles.profileLink} aria-label="Personal account">
+                <img src="/img/user.svg" alt="" className={styles.avatarIcon} />
+              </Link>
+              <Link to="/workspace" className={styles.primaryBtn}>
+                To planning
+              </Link>
+            </>
           ) : (
             <>
               <Link to="/signin" className={styles.primaryBtn}>

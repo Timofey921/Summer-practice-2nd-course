@@ -43,7 +43,7 @@ class AuthService {
     const user = users[email];
 
     if (!user || user.password !== password) {
-      throw new Error('Неверный email или пароль');
+      throw new Error('Wrong email or password');
     }
 
     this.saveAccessToken(user.tokens.access);
@@ -54,7 +54,7 @@ class AuthService {
     const users = getStoredUsers();
 
     if (users[email]) {
-      throw new Error('Пользователь с таким email уже существует');
+      throw new Error('User with this email already exists');
     }
 
     const tokens = createTokens();

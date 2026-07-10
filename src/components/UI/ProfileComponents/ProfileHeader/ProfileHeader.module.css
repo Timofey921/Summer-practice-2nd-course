@@ -70,55 +70,31 @@
   right: 0;
 }
 
-.authButtons {
+.logoutButton {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-
-.primaryBtn {
-  background-color: var(--navy);
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 999px;
-  transition: background-color 0.2s ease;
-  white-space: nowrap;
-}
-
-.primaryBtn:hover {
-  background-color: var(--navy-soft);
-}
-
-.secondaryBtn {
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 10px 16px;
-  white-space: nowrap;
-}
-
-.profileLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+  gap: 8px;
+  background: none;
   border: 1px solid var(--hairline);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
   flex-shrink: 0;
-  transition: border-color 0.2s ease;
 }
 
-.profileLink:hover {
-  border-color: var(--navy);
+.logoutButton:hover {
+  border-color: #0d8ae4;
+  color: #0d8ae4;
 }
 
-.profileIcon {
-  width: 18px;
-  height: 18px;
+.logoutIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
