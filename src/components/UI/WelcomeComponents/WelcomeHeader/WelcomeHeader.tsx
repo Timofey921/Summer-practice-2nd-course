@@ -1,23 +1,10 @@
-import { useState, useEffect } from 'react';
 import type { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
-import authService from '../../../../services/authService';
+import { useAuth } from '../../../../context/useAuth';
 import styles from './WelcomeHeader.module.css';
 
 const WelcomeHeader = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  useEffect(() => {
-    const checkAuth = async (): Promise<void> => {
-      try {
-        const isValid = await authService.validate();
-        setIsAuthenticated(isValid);
-      } catch {
-        setIsAuthenticated(false);
-      }
-    };
-    checkAuth();
-  }, []);
+  const { isAuthenticated } = useAuth();
 
   const handleAnchorClick = (
     event: MouseEvent<HTMLAnchorElement>,

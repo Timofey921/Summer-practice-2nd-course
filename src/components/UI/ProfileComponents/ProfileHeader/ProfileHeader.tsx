@@ -1,12 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
-import authService from '../../../../services/authService';
+import { useAuth } from '../../../../context/useAuth';
 import styles from './ProfileHeader.module.css';
 
 const ProfileHeader = () => {
   const navigate = useNavigate();
+  const { login, logout } = useAuth();
 
   const handleLogout = (): void => {
-    authService.logout();
+    logout();
     navigate('/');
   };
 
@@ -32,26 +33,30 @@ const ProfileHeader = () => {
           <Link to="/workspace">To planning</Link>
         </nav>
 
-        <button type="button" className={styles.logoutButton} onClick={handleLogout}>
-          <svg className={styles.logoutIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M15 17L20 12L15 7"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path d="M20 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path
-              d="M9 19H6C4.89543 19 4 18.1046 4 17V7C4 5.89543 4.89543 5 6 5H9"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          Logout
-        </button>
+        <div className={styles.rightSide}>
+          {login && <span className={styles.userLogin}>{login}</span>}
+
+          <button type="button" className={styles.logoutButton} onClick={handleLogout}>
+            <svg className={styles.logoutIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15 17L20 12L15 7"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path d="M20 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M9 19H6C4.89543 19 4 18.1046 4 17V7C4 5.89543 4.89543 5 6 5H9"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Logout
+          </button>
+        </div>
       </div>
     </header>
   );

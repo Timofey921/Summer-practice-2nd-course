@@ -31,6 +31,15 @@ const Header = (props: HeaderProps) => {
   return (
     <header className={styles['page-header']}>
       <div className={`page-body__container ${styles['page-header__container']}`}>
+        <Link to="/" className={styles.logoLink}>
+          <svg className={styles.logoMark} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 24C10 24 10 8 16 8C22 8 22 24 28 24" stroke="var(--route)" strokeWidth="2.5" strokeDasharray="1 6" strokeLinecap="round" />
+            <circle cx="4" cy="24" r="3" fill="var(--navy)" />
+            <circle cx="28" cy="24" r="3" fill="var(--route)" />
+          </svg>
+          <span className={styles.logoWord}>Big Trip</span>
+        </Link>
+
         <img className={styles['page-header__logo']} src="/img/logo.png" width={42} height={42} alt="Trip logo" />
 
         <div className={styles['trip-main']}>

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import type { InferType } from 'yup';
-import authService from '../../../services/authService';
+import { useAuth } from '../../../context/useAuth';
 import { signinSchema } from '../../../utils/signinValidation';
 import styles from './SignInPage.module.css';
 
@@ -11,6 +11,7 @@ type SignInFormData = InferType<typeof signinSchema>;
 
 const SignInPage = () => {
   const navigate = useNavigate();
+  const { signUp } = useAuth();
   const [serverError, setServerError] = useState('');
   const {register, handleSubmit, formState: { errors, isSubmitting },} = useForm<SignInFormData>({
     resolver: yupResolver(signinSchema),
@@ -25,7 +26,7 @@ const SignInPage = () => {
     setServerError('');
 
     try {
-      await authService.register(data.login, data.password);
+      await signUp({ login: data.login, password: data.password });
       navigate('/workspace');
     } catch (error) {
       setServerError(

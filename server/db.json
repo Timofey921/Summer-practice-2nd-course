@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "_id": 1,
+      "login": "admin@bigtrip.dev",
+      "password": "admin123",
+      "name": "",
+      "about": "",
+      "email": ""
+    },
+    {
+      "_id": 2,
+      "login": "student@bigtrip.dev",
+      "password": "student123",
+      "name": "",
+      "about": "",
+      "email": ""
+    },
+    {
+      "_id": 3,
+      "login": "hehe@gmail.com",
+      "password": "123456789",
+      "name": "",
+      "about": ""
+    }
+  ]
+}
