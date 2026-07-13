@@ -1,51 +1,39 @@
+import api from '../api/axiosInstance';
+import { toReadableError } from '../utils/apiError';
 import type { ProfileUpdatePayload, UserProfile } from '../types/profile';
-
-const API_BASE = '/api/profile';
 
 class ProfileService {
   async getProfile(): Promise<UserProfile> {
-    const response = await fetch(API_BASE, {
-      method: 'GET',
-      credentials: 'include',
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to load profile');
+    try {
+      const { data } = await api.get<UserProfile>('/profile');
+      return data;
+    } catch (error) {
+      throw toReadableError(error, 'Failed to load profile');
     }
-
-    return response.json() as Promise<UserProfile>;
   }
 
-  async updateProfile(data: ProfileUpdatePayload): Promise<UserProfile> {
-    const response = await fetch(API_BASE, {
-      method: 'PATCH',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to save profile');
+  async updateProfile(payload: ProfileUpdatePayload): Promise<UserProfile> {
+    try {
+      const { data } = await api.patch<UserProfile>('/profile', payload);
+      return data;
+    } catch (error) {
+      throw toReadableError(error, 'Failed to save profile');
     }
-
-    return response.json() as Promise<UserProfile>;
   }
 
   async uploadAvatar(file: File): Promise<{ avatarUrl: string }> {
     const formData = new FormData();
     formData.append('avatar', file);
 
-    const response = await fetch(`${API_BASE}/avatar`, {
-      method: 'POST',
-      credentials: 'include',
-      body: formData,
-    });
+    try {
+      const { data } = await api.post<{ avatarUrl: string }>('/profile/avatar', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
-    if (!response.ok) {
-      throw new Error('Failed to load avatar');
+      return data;
+    } catch (error) {
+      throw toReadableError(error, 'Failed to load avatar');
     }
-
-    return response.json() as Promise<{ avatarUrl: string }>;
   }
 }
 

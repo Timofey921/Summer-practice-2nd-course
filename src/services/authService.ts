@@ -1,76 +1,57 @@
-export interface AuthTokens {
-  access: string;
-  refresh: string;
+import { AxiosError } from 'axios';
+import api from '../api/axiosInstance';
+import { clearAccessToken, getAccessToken, setAccessToken } from './tokenStorage';
+import type { AuthCredentials, AuthResponse, AuthUser, MeResponse } from '../types/auth';
+
+function toReadableError(error: unknown, fallback: string): Error {
+  if (error instanceof AxiosError) {
+    const serverMessage = (error.response?.data as { error?: string } | undefined)?.error;
+    return new Error(serverMessage ?? fallback);
+  }
+
+  return error instanceof Error ? error : new Error(fallback);
 }
-
-interface StoredUser {
-  password: string;
-  tokens: AuthTokens;
-}
-
-const USERS_STORAGE_KEY = 'auth-users';
-const ACCESS_TOKEN_KEY = 'accessToken';
-
-const getStoredUsers = (): Record<string, StoredUser> => {
-  const raw = localStorage.getItem(USERS_STORAGE_KEY);
-  return raw ? JSON.parse(raw) : {};
-};
-
-const saveStoredUsers = (users: Record<string, StoredUser>): void => {
-  localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
-};
-
-const createTokens = (): AuthTokens => ({
-  access: `mock_access_${Date.now()}`,
-  refresh: `mock_refresh_${Date.now()}`,
-});
 
 class AuthService {
-  private saveAccessToken(token: string): void {
-    localStorage.setItem(ACCESS_TOKEN_KEY, token);
-  }
-
-  getAccessToken(): string | null {
-    return localStorage.getItem(ACCESS_TOKEN_KEY);
-  }
-
-  clearAccessToken(): void {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-  }
-
-  async login(email: string, password: string): Promise<AuthTokens> {
-    const users = getStoredUsers();
-    const user = users[email];
-
-    if (!user || user.password !== password) {
-      throw new Error('Wrong email or password');
+  async login(credentials: AuthCredentials): Promise<AuthUser> {
+    try {
+      const { data } = await api.post<AuthResponse>('/auth/login', credentials);
+      setAccessToken(data.token);
+      return data.user;
+    } catch (error) {
+      throw toReadableError(error, 'Couldn\'t log in');
     }
-
-    this.saveAccessToken(user.tokens.access);
-    return user.tokens;
   }
 
-  async register(email: string, password: string): Promise<AuthTokens> {
-    const users = getStoredUsers();
-
-    if (users[email]) {
-      throw new Error('User with this email already exists');
+  async register(credentials: AuthCredentials): Promise<AuthUser> {
+    try {
+      const { data } = await api.post<AuthResponse>('/auth/register', credentials);
+      setAccessToken(data.token);
+      return data.user;
+    } catch (error) {
+      throw toReadableError(error, 'Couldn\'t sign in');
     }
+  }
 
-    const tokens = createTokens();
-    users[email] = { password, tokens };
-    saveStoredUsers(users);
+  async me(): Promise<AuthUser | null> {
+    if (!getAccessToken()) return null;
 
-    this.saveAccessToken(tokens.access);
-    return tokens;
+    try {
+      const { data } = await api.get<MeResponse>('/auth/me');
+      return data.user;
+    } catch {
+      clearAccessToken();
+      return null;
+    }
   }
 
   async validate(): Promise<boolean> {
-    return !!this.getAccessToken();
+    const user = await this.me();
+    return !!user;
   }
 
   logout(): void {
-    this.clearAccessToken();
+    clearAccessToken();
   }
 }
 

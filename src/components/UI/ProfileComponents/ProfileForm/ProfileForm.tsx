@@ -8,7 +8,6 @@ const FORM_STORAGE_KEY = 'profile_form_draft';
 interface StoredDraft {
   name?: string;
   about?: string;
-  email?: string;
 }
 
 const getStoredDraft = (): StoredDraft => {
@@ -20,7 +19,6 @@ const getStoredDraft = (): StoredDraft => {
 const ProfileForm = () => {
   const [name, setName] = useState<string>('');
   const [about, setAbout] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -37,9 +35,8 @@ const ProfileForm = () => {
 
         setName(stored.name !== undefined ? stored.name : profileData.name || '');
         setAbout(stored.about !== undefined ? stored.about : profileData.about || '');
-        setEmail(stored.email !== undefined ? stored.email : profileData.email || '');
       } catch (error) {
-        setErrorMessage(error instanceof Error ? error.message : 'Failed to load profile');
+        setErrorMessage(error instanceof Error ? error.message : 'Ошибка загрузки профиля');
       } finally {
         setInitialLoading(false);
       }
@@ -50,9 +47,9 @@ const ProfileForm = () => {
 
   useEffect(() => {
     if (shouldSaveRef.current && !initialLoading) {
-      localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify({ name, about, email }));
+      localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify({ name, about }));
     }
-  }, [name, about, email, initialLoading]);
+  }, [name, about, initialLoading]);
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -60,14 +57,14 @@ const ProfileForm = () => {
     setErrorMessage('');
 
     try {
-      await profileService.updateProfile({ name, about, email });
+      await profileService.updateProfile({ name, about });
 
       shouldSaveRef.current = false;
       localStorage.removeItem(FORM_STORAGE_KEY);
 
       alert('Profile successfully updated');
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to save');
+      setErrorMessage(error instanceof Error ? error.message : 'Ошибка сохранения');
       shouldSaveRef.current = true;
     } finally {
       setLoading(false);
@@ -84,10 +81,9 @@ const ProfileForm = () => {
       .then((profileData) => {
         setName(profileData.name || '');
         setAbout(profileData.about || '');
-        setEmail(profileData.email || '');
         setErrorMessage('');
       })
-      .catch((error) => setErrorMessage(error instanceof Error ? error.message : 'Filed to load'))
+      .catch((error) => setErrorMessage(error instanceof Error ? error.message : 'Ошибка загрузки'))
       .finally(() => {
         setInitialLoading(false);
         shouldSaveRef.current = true;
@@ -108,7 +104,7 @@ const ProfileForm = () => {
         await profileService.uploadAvatar(file);
         alert('Avatar successfully loaded');
       } catch (error) {
-        setErrorMessage(error instanceof Error ? error.message : 'Failed to load avatar');
+        setErrorMessage(error instanceof Error ? error.message : 'Ошибка загрузки аватара');
       } finally {
         setLoading(false);
       }
@@ -169,22 +165,6 @@ const ProfileForm = () => {
             value={about}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setAbout(e.target.value)}
             disabled={loading}
-          />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="Email"
-            className={styles.input}
-            value={email}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-            disabled={loading}
-            required
           />
         </div>
 

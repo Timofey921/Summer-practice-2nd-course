@@ -4,13 +4,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import type { InferType } from 'yup';
 import { loginSchema } from '../../../utils/loginValidation';
-import authService from '../../../services/authService';
+import { useAuth } from '../../../context/useAuth';
 import styles from './LoginPage.module.css';
 
 type LoginFormData = InferType<typeof loginSchema>;
 
 const LogInPage = () => {
   const navigate = useNavigate();
+  const { signIn } = useAuth();
   const [serverError, setServerError] = useState('');
   const {register, handleSubmit, formState: { errors, isSubmitting },} = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
@@ -24,7 +25,7 @@ const LogInPage = () => {
     setServerError('');
 
     try {
-      await authService.login(data.login, data.password);
+      await signIn({ login: data.login, password: data.password });
       navigate('/workspace');
     } catch (error) {
       setServerError(
