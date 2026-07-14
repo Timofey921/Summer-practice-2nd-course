@@ -55,3 +55,7 @@ export const formatEventDuration = (from: string, to: string): string => {
   }
   return `${String(minutes).padStart(2, '0')}M`;
 };
+
+export const formatTripDate = (date: Date): string => {
+  return `${date.getDate()} ${MONTHS[date.getMonth()]}`;
+};
