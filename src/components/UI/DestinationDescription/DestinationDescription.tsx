@@ -1,16 +1,21 @@
 import styles from './DestinationDescription.module.css';
-import type { Destination } from '../../../types/event';
 
 interface DestinationSectionProps {
-  destination: Destination | null;
+  destinationName: string;
+  description: string;
+  photos: string[];
+  onDescriptionChange: (value: string) => void;
 }
 
 const DestinationSection = (props: DestinationSectionProps) => {
   const {
-    destination,
+    destinationName,
+    description,
+    photos,
+    onDescriptionChange,
   } = props;
 
-  if (!destination || (!destination.description && destination.photos.length === 0)) {
+  if (!destinationName.trim()) {
     return null;
   }
 
@@ -20,16 +25,17 @@ const DestinationSection = (props: DestinationSectionProps) => {
         Destination
       </h3>
 
-      {destination.description && (
-        <p className={styles['event__destination-description']}>
-          {destination.description}
-        </p>
-      )}
+      <textarea
+        className={styles['event__destination-description']}
+        value={description}
+        placeholder="Type your destination info here"
+        onChange={(event) => onDescriptionChange(event.target.value)}
+      />
 
-      {destination.photos.length > 0 && (
+      {photos.length > 0 && (
         <div className={styles['event__photos-container']}>
           <div className={styles['event__photos-tape']}>
-            {destination.photos.map((photo) => (
+            {photos.map((photo) => (
               <img
                 className={styles['event__photo']}
                 src={photo}
