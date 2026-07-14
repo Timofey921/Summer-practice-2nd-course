@@ -20,8 +20,10 @@
       "_id": 3,
       "login": "hehe@gmail.com",
       "password": "123456789",
-      "name": "",
-      "about": ""
+      "name": "Heg",
+      "about": "Programmer",
+      "avatarUrl": "/img/avatars/3.png"
     }
-  ]
+  ],
+  "events": []
 }

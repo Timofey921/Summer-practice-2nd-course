@@ -1,6 +1,6 @@
-import { useState, type SubmitEventHandler } from 'react';
-import type { EventType, TripEvent } from '../../../types/event.ts';
-import { AVAILABLE_OFFERS, EVENT_TYPE_LABELS } from '../../../mock/data.ts';
+import { useEffect, useState, type SubmitEventHandler } from 'react';
+import type { EventType, Offer, TripEvent } from '../../../types/event.ts';
+import { EVENT_TYPE_LABELS } from '../../../mock/data.ts';
 import { findDestinationByName } from '../../../utils/destinations.ts';
 import EventTypeSelector from '../../UI/EventTypeSelector/EventTypeSelector.tsx';
 import OffersSection from '../../UI/OffersSection/OffersSection.tsx';
@@ -29,23 +29,36 @@ const EventForm = (props: EventFormProps) => {
     onRollup,
   } = props;
 
-  const [type, setType] = useState<EventType>(event?.type ?? 'flight');
-  const [destinationName, setDestinationName] = useState(event?.destination.name ?? '');
-  const [dateFrom, setDateFrom] = useState(event?.dateFrom ?? '');
-  const [dateTo, setDateTo] = useState(event?.dateTo ?? '');
-  const [price, setPrice] = useState(event ? String(event.price) : '');
-  const [selectedOfferIds, setSelectedOfferIds] = useState<string[]>(
-    event?.offers.map((offer) => offer.id) ?? [],
+  const [type, setType] = useState<EventType>(mode === 'add' ? 'flight' : (event?.type ?? 'flight'));
+  const [destinationName, setDestinationName] = useState(mode === 'add' ? '' : (event?.destination.name ?? ''));
+  const [destinationDescription, setDestinationDescription] = useState(
+    mode === 'add' ? '' : (event?.destination.description ?? ''),
   );
+  const [dateFrom, setDateFrom] = useState(mode === 'add' ? '' : (event?.dateFrom ?? ''));
+  const [dateTo, setDateTo] = useState(mode === 'add' ? '' : (event?.dateTo ?? ''));
+  const [price, setPrice] = useState(mode === 'add' ? '0' : String(event?.price ?? 0));
+  const [offers, setOffers] = useState<Offer[]>(mode === 'add' ? [] : (event?.offers ?? []));
 
   const id = event?.id ?? 'new-event';
-  const destination = findDestinationByName(destinationName);
+  const knownDestination = findDestinationByName(destinationName);
 
-  const handleOfferToggle = (offerId: string) => {
-    setSelectedOfferIds((prev) =>
-      prev.includes(offerId) ? prev.filter((selectedId) => selectedId !== offerId) : [...prev, offerId],
-    );
-  };
+  useEffect(() => {
+    const handleKeyDown = (keyboardEvent: KeyboardEvent) => {
+      if (keyboardEvent.key === 'Escape') {
+        if (mode === 'edit') {
+          onRollup?.();
+        } else {
+          onCancel();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mode, onCancel, onRollup]);
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (formEvent) => {
     formEvent.preventDefault();
@@ -53,11 +66,15 @@ const EventForm = (props: EventFormProps) => {
     const submittedEvent: TripEvent = {
       id: event?.id ?? crypto.randomUUID(),
       type,
-      destination: destination ?? { name: destinationName, description: '', photos: [] },
+      destination: {
+        name: destinationName,
+        description: destinationDescription,
+        photos: knownDestination?.photos ?? event?.destination.photos ?? [],
+      },
       dateFrom,
       dateTo,
       price: Number(price) || 0,
-      offers: AVAILABLE_OFFERS.filter((offer) => selectedOfferIds.includes(offer.id)),
+      offers: offers.filter((offer) => offer.title.trim()),
       isFavorite: event?.isFavorite ?? false,
     };
 
@@ -106,13 +123,13 @@ const EventForm = (props: EventFormProps) => {
       </header>
 
       <section className={styles['event__details']}>
-        <OffersSection
-          offers={AVAILABLE_OFFERS}
-          selectedOfferIds={selectedOfferIds}
-          onToggle={handleOfferToggle}
-          idPrefix={id}
+        <OffersSection offers={offers} onChange={setOffers} idPrefix={id} />
+        <DestinationSection
+          destinationName={destinationName}
+          description={destinationDescription}
+          photos={knownDestination?.photos ?? []}
+          onDescriptionChange={setDestinationDescription}
         />
-        <DestinationSection destination={destination} />
       </section>
     </form>
   );

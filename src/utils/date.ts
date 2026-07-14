@@ -3,7 +3,7 @@ const MONTHS = [
   'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC',
 ];
 
-const parseEventDateTime = (value: string): Date | null => {
+export const parseEventDateTime = (value: string): Date | null => {
   const match = value.match(/^(\d{2})\/(\d{2})\/(\d{2})\s+(\d{2}):(\d{2})$/);
 
   if (!match) {
