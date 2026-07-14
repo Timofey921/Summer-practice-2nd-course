@@ -11,8 +11,31 @@ export type MockUser = {
   avatarUrl?: string
 }
 
+export type StoredOffer = {
+  id: string
+  title: string
+  price: number
+}
+
+export type StoredEvent = {
+  id: string
+  userId: number
+  type: string
+  destination: {
+    name: string
+    description: string
+    photos: string[]
+  }
+  dateFrom: string
+  dateTo: string
+  price: number
+  offers: StoredOffer[]
+  isFavorite: boolean
+}
+
 type DbShape = {
   users: MockUser[]
+  events?: StoredEvent[]
 }
 
 export type SessionUser = Pick<MockUser, '_id' | 'login'>

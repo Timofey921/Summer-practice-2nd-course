@@ -25,5 +25,21 @@
       "avatarUrl": "/img/avatars/3.png"
     }
   ],
-  "events": []
+  "events": [
+    {
+      "id": "cdf7d672-7a34-4da3-bc62-c56321dc4728",
+      "type": "flight",
+      "destination": {
+        "name": "New-York",
+        "description": "",
+        "photos": []
+      },
+      "dateFrom": "18/03/19 12:25",
+      "dateTo": "18/03/19 13:35",
+      "price": 5000,
+      "offers": [],
+      "isFavorite": false,
+      "userId": 3
+    }
+  ]
 }
