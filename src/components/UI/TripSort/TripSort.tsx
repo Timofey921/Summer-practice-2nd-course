@@ -6,12 +6,10 @@ interface TripSortProps {
   onSortChange: (sort: SortType) => void;
 }
 
-const SORT_OPTIONS: { value: SortType; label: string; disabled?: boolean }[] = [
+const SORT_OPTIONS: { value: SortType; label: string }[] = [
   { value: 'day', label: 'Day' },
-  { value: 'event', label: 'Event', disabled: true },
   { value: 'time', label: 'Time' },
   { value: 'price', label: 'Price' },
-  { value: 'offer', label: 'Offers', disabled: true },
 ];
 
 const TripSort = ({ activeSort, onSortChange }: TripSortProps) => (
@@ -28,7 +26,6 @@ const TripSort = ({ activeSort, onSortChange }: TripSortProps) => (
           name="trip-sort"
           value={`sort-${option.value}`}
           checked={activeSort === option.value}
-          disabled={option.disabled}
           onChange={() => onSortChange(option.value)}
         />
         <label className={styles['trip-sort__btn']} htmlFor={`sort-${option.value}`}>

@@ -29,7 +29,6 @@ export interface TripEvent {
   dateTo: string;
   price: number;
   offers: Offer[];
-  isFavorite: boolean;
 }
 
 export type FilterType = 'everything' | 'future' | 'present' | 'past';

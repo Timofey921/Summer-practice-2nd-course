@@ -75,7 +75,6 @@ const EventForm = (props: EventFormProps) => {
       dateTo,
       price: Number(price) || 0,
       offers: offers.filter((offer) => offer.title.trim()),
-      isFavorite: event?.isFavorite ?? false,
     };
 
     onSubmit(submittedEvent);

@@ -105,6 +105,7 @@
   height: 40px;
   padding: 0;
   margin: 0;
+  margin-left: auto;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -127,32 +128,4 @@
 }
 .event__rollup-btn:hover::after {
   border-color: #0d8ae4;
-}
-
-.event__favorite-btn {
-  margin: 0 10px;
-  margin-left: auto;
-  color: #ebebeb;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  -webkit-transition: color 0.2s;
-  transition: color 0.2s;
-}
-.event__favorite-btn:hover,
-.event__favorite-btn:focus {
-  color: rgba(255, 208, 84, 0.6);
-}
-.event__favorite-btn--active {
-  color: #ffd054;
-}
-
-.event__favorite-icon {
-  display: block;
-  width: 28px;
-  height: 28px;
-  fill: currentColor;
-  -webkit-transition: fill 0.2s;
-  transition: fill 0.2s;
 }
