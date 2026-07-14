@@ -3,7 +3,7 @@
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  height: 100%;
+  min-height: 100vh;
   min-width: 1200px;
   padding: 0;
   margin: 0;
@@ -46,6 +46,8 @@
 }
 
 .trip-events {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
   padding-top: 22px;
 }
 .trip-events--hidden {

@@ -30,10 +30,6 @@
   margin-right: 83px;
 }
 
-.trip-sort__item--event {
-  width: 300px;
-}
-
 .trip-sort__item--time {
   width: 225px;
 }
@@ -74,15 +70,6 @@
   border-radius: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-}
-
-.trip-sort__input:disabled + .trip-sort__btn {
-  opacity: 0.6;
-}
-
-.trip-sort__input:disabled + .trip-sort__btn:hover {
-  color: #b4b4b4;
-  cursor: default;
 }
 
 .trip-events__trip-sort {

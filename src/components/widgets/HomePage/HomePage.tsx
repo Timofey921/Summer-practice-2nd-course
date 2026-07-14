@@ -74,15 +74,6 @@ const HomePage = () => {
     setEditingEventId(null);
   };
 
-  const handleToggleFavorite = async (id: string) => {
-    const target = events.find((element) => element.id === id);
-    if (!target) return;
-
-    const updated = { ...target, isFavorite: !target.isFavorite };
-    setEvents((prev) => prev.map((element) => (element.id === id ? updated : element)));
-    await updateEvent(updated);
-  };
-
   const handleCancelAdd = () => {
     setIsAddingNew(false);
   };
@@ -142,7 +133,6 @@ const HomePage = () => {
                     ) : (
                       <EventCard
                         event={event}
-                        onToggleFavorite={handleToggleFavorite}
                         onOpen={() => handleOpenEdit(event.id)}
                       />
                     )}

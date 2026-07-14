@@ -28,7 +28,7 @@ const TimeField = (props: TimeFieldProps) => {
         type="text"
         name={name}
         value={value}
-        placeholder="дд/мм/гг чч:мм"
+        placeholder="dd/mm/yy hh:mm"
         onChange={(e) => onChange(e.target.value)}
       />
     </>
