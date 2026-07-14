@@ -5,7 +5,7 @@ import TripSort from '../../UI/TripSort/TripSort';
 import EventForm from '../../widgets/EventForm/EventForm';
 import EventCard from '../../pages/EventCard/EventCard';
 import { filterEvents, sortEvents } from '../../../utils/events';
-import { createEvent, deleteEvent, fetchEvents, updateEvent } from '../../../services/eventsApi';
+import { createEvent, deleteEvent, fetchEvents, updateEvent } from '../../../api/eventsApi';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
@@ -25,7 +25,7 @@ const HomePage = () => {
     return () => {
       isMounted = false;
     };
-    }, []);
+  }, []);
 
   const totalCost = events.reduce(
     (sum, event) => sum + event.price + event.offers.reduce((summary, offer) => summary + offer.price, 0),
@@ -51,30 +51,36 @@ const HomePage = () => {
     setEditingEventId(id);
   };
 
-  const handleAddSubmit = (newEvent: TripEvent) => {
-    setEvents((prev) => sortEvents([...prev, newEvent], 'day'));
+  const handleAddSubmit = async (newEvent: TripEvent) => {
+    const savedEvent = await createEvent(newEvent);
+    setEvents((prev) => sortEvents([...prev, savedEvent], 'day'));
     setIsAddingNew(false);
   };
 
-  const handleEditSubmit = (updatedEvent: TripEvent) => {
+  const handleEditSubmit = async (updatedEvent: TripEvent) => {
+    const savedEvent = await updateEvent(updatedEvent);
     setEvents((prev) =>
       sortEvents(
-        prev.map((element) => (element.id === updatedEvent.id ? updatedEvent : element)),
+        prev.map((element) => (element.id === savedEvent.id ? savedEvent : element)),
         sort,
       ),
     );
     setEditingEventId(null);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
+    await deleteEvent(id);
     setEvents((prev) => prev.filter((element) => element.id !== id));
     setEditingEventId(null);
   };
 
-  const handleToggleFavorite = (id: string) => {
-    setEvents((prev) =>
-      prev.map((element) => (element.id === id ? { ...element, isFavorite: !element.isFavorite } : element)),
-    );
+  const handleToggleFavorite = async (id: string) => {
+    const target = events.find((element) => element.id === id);
+    if (!target) return;
+
+    const updated = { ...target, isFavorite: !target.isFavorite };
+    setEvents((prev) => prev.map((element) => (element.id === id ? updated : element)));
+    await updateEvent(updated);
   };
 
   const handleCancelAdd = () => {
