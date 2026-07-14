@@ -5,8 +5,11 @@ import TripSort from '../../UI/TripSort/TripSort';
 import EventForm from '../../widgets/EventForm/EventForm';
 import EventCard from '../../pages/EventCard/EventCard';
 import { filterEvents, sortEvents } from '../../../utils/events';
+import { getRouteTitle, getTripDates } from '../../../utils/trip';
 import { createEvent, deleteEvent, fetchEvents, updateEvent } from '../../../api/eventsApi';
 import styles from './HomePage.module.css';
+
+const ALL_FILTERS: FilterType[] = ['everything', 'future', 'present', 'past'];
 
 const HomePage = () => {
   const [filter, setFilter] = useState<FilterType>('everything');
@@ -30,6 +33,14 @@ const HomePage = () => {
   const totalCost = events.reduce(
     (sum, event) => sum + event.price + event.offers.reduce((summary, offer) => summary + offer.price, 0),
     0,
+  );
+
+  const routeTitle = useMemo(() => getRouteTitle(events), [events]);
+  const tripDates = useMemo(() => getTripDates(events), [events]);
+
+  const disabledFilters = useMemo(
+    () => ALL_FILTERS.filter((filterValue) => filterEvents(events, filterValue).length === 0),
+    [events],
   );
 
   const displayedEvents = useMemo(
@@ -85,13 +96,14 @@ const HomePage = () => {
   return (
     <div className={styles['page-body']}>
       <Header
-        title="Amsterdam — Chamonix — Geneva"
-        dates="18 — 20 Mar"
+        title={routeTitle}
+        dates={tripDates}
         totalCost={totalCost}
         activeFilter={filter}
         onFilterChange={setFilter}
         onAddEventClick={handleAddEventClick}
         isAddButtonDisabled={isAddingNew}
+        disabledFilters={disabledFilters}
       />
 
       <main className={styles['page-body__page-main']}>

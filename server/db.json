@@ -25,5 +25,64 @@
       "avatarUrl": "/img/avatars/3.png"
     }
   ],
-  "events": []
+  "events": [
+    {
+      "id": "b6624a53-952e-44fb-b158-ccecf1e65073",
+      "type": "drive",
+      "destination": {
+        "name": "Saint-Petersburg",
+        "description": "",
+        "photos": []
+      },
+      "dateFrom": "18/03/19 12:25",
+      "dateTo": "19/03/19 13:35",
+      "price": 100,
+      "offers": [],
+      "userId": 3
+    },
+    {
+      "id": "eac9c9ba-f1b9-409f-b587-4e5625106e15",
+      "type": "flight",
+      "destination": {
+        "name": "Beijin",
+        "description": "",
+        "photos": []
+      },
+      "dateFrom": "25/07/26 12:25",
+      "dateTo": "28/07/26 13:55",
+      "price": 350,
+      "offers": [],
+      "userId": 3
+    },
+    {
+      "id": "d9db7adc-f062-4c75-862f-8221bfe61e9e",
+      "type": "bus",
+      "destination": {
+        "name": "Paris",
+        "description": "",
+        "photos": []
+      },
+      "dateFrom": "20/06/26 14:00",
+      "dateTo": "22/06/26 15:25",
+      "price": 50,
+      "offers": [],
+      "userId": 3
+    },
+    {
+      "id": "c66f49f9-60d1-4127-b56d-9cc19fd429da",
+      "type": "taxi",
+      "destination": {
+        "name": "Chamonix",
+        "description": "",
+        "photos": [
+          "/img/1.jpg"
+        ]
+      },
+      "dateFrom": "2/06/26 14:00",
+      "dateTo": "03/06/26 13:25",
+      "price": 25,
+      "offers": [],
+      "userId": 3
+    }
+  ]
 }

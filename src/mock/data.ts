@@ -1,23 +1,4 @@
-import type { Destination, EventType, Offer, TripEvent } from '../types/event';
-
-export const INITIAL_EVENT: TripEvent = {
-  id: '1',
-  type: 'flight',
-  destination: {
-    name: 'Chamonix',
-    description:
-      "Chamonix-Mont-Blanc (usually shortened to Chamonix) is a resort area near the junction of France, Switzerland and Italy. At the base of Mont Blanc, the highest summit in the Alps, it's renowned for its skiing.",
-    photos: ['/img/1.jpg'],
-  },
-  dateFrom: '18/03/19 12:25',
-  dateTo: '18/03/19 13:35',
-  price: 160,
-  offers: [
-    { id: 'luggage', title: 'Add luggage', price: 50 },
-    { id: 'comfort', title: 'Switch to comfort', price: 80 },
-  ],
-  isFavorite: false,
-};
+import type { Destination, EventType, Offer } from '../types/event';
 
 export const EVENT_TYPES: EventType[] = [
   'taxi',
