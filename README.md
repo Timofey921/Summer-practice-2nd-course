@@ -22,6 +22,12 @@ Big Trip is a trip route-planning and cost-calculation web app with a minimalist
 
 ## Getting Started
 
+### Cloning
+
+```bash
+git clone https://github.com/Timofey921/Summer-practice-2nd-course.git
+```
+
 ### Installation
 
 ```bash
