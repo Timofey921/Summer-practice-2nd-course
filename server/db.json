@@ -37,7 +37,13 @@
       "dateFrom": "18/03/19 12:25",
       "dateTo": "19/03/19 13:35",
       "price": 100,
-      "offers": [],
+      "offers": [
+        {
+          "id": "2fdbb54d-4e3a-4b86-963c-801553a5e912",
+          "title": "Luggage",
+          "price": 20
+        }
+      ],
       "userId": 3
     },
     {
@@ -78,7 +84,7 @@
           "/img/1.jpg"
         ]
       },
-      "dateFrom": "2/06/26 14:00",
+      "dateFrom": "02/06/26 14:00",
       "dateTo": "03/06/26 13:25",
       "price": 25,
       "offers": [],

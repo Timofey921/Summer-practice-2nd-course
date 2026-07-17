@@ -49,7 +49,7 @@ export function authApiPlugin(): Plugin {
           const user = findUserByCredentials(body.login, body.password)
 
           if (!user) {
-            return sendJson(res, 401, { ok: false, error: 'Wrong email and password' })
+            return sendJson(res, 401, { ok: false, error: 'Wrong email or password' })
           }
 
           const token = createTokenForUser(user)
